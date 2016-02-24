@@ -44,15 +44,15 @@ ylabel("Demand")
  S=Chebyshev([-1,1])
  nodes = gausschebyshev(n)  # generate n Chebyshev Nodes
  function myfunct(p) ##### The demand function when its argument is mapped [1,4]-> [-1,1]
-			return demandfunction((3p/2) +2.5)
-		end
+		return demandfunction((3p/2) +2.5)
+	end
  f=Fun(ApproxFun.transform(S,map(myfunct,nodes[1])),S) ### We approximate the function using at data its values at the Chebbyshev nodes
  ApproxFun.plot(f) ###### We now plot the original function versus the interpolated function.
-	x= linspace(-1,1,100)
-	y= map(myfunct,x)
+ x= linspace(-1,1,100)
+ y= map(myfunct,x)
  plot(x,y,linewidth=2,color="red") #### THe true function is in red
-	g= cumsum(f) ### The integral function
-	myintegral= 1.5*(g(1) - g(-1)) #### We multiply by 1.5 because we shrank the domain when mapping [1,4]-> [-1,1].
+ g= cumsum(f) ### The integral function
+ myintegral= 1.5*(g(1) - g(-1)) #### We multiply by 1.5 because we shrank the domain when mapping [1,4]-> [-1,1].
  return myintegral-3 #### Finally, we take away 3 because we are interested in the change in consumer surplus.
 	end
 
@@ -61,7 +61,7 @@ ylabel("Demand")
 
 #### We start by generating random points in [1,4] x[1,2], which is [domain]x[range] of our function
  myvectorx=  1+3*rand(n)
-	myvectory = 1+ rand(n)
+ myvectory = 1+ rand(n)
  myvaluesy= map(demandfunction, myvectorx)
 ### Now we simply take the expectancy multiplied by the area of [domain]x[range]
 myexpectation= mean(myvaluesy .> myvectory)*3
@@ -79,12 +79,12 @@ scatter(myvectorx,myvectory,s=1)
 
 	function question_1d(n)
 		mypoints=[]
-		t = SobolSeq(2)
+		t = SobolSeq(2) 
 		for(i =1:n)
-   mypoints = [mypoints, next(t)]
+   mypoints = [mypoints, next(t)] #### We get the list of Sobol points in R2
 		end
-		mypoints=reshape(mypoints, 2,n)
-		##### We  now apply the same procedure as before
+		mypoints=reshape(mypoints, 2,n) ######### We make the point matrix a 2xn matrix
+		##### We  now apply the same scaling procedure as before
 		myvectorx = 1+3*mypoints[1,:]
 		myvectory = 1+ mypoints[2,:]
 		myvaluesy= map(demandfunction, myvectorx)
