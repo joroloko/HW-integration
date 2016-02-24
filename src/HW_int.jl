@@ -138,7 +138,7 @@ nodes=nodes*sigma
 
 
 function question_2b(n)
- echan= MvNormal([[.002 .001],[ .001 .001]]) ##### The distributions of log theta1 and log theta2
+ echan= MvNormal([[.02 .01],[ .01 .01]]) ##### The distributions of log theta1 and log theta2
 	echan =exp(rand(echan,n))		##### Now that we have the distributions of Theta_1 and Theta_2,
 ################### We now apply the same procedure as in the last exercise
  function getroot(a) #### The function to apply to each row of nodes
