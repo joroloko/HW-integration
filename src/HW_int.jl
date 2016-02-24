@@ -110,7 +110,7 @@ function question_2a(np)
 	col2 = repeat(rules[1],inner=[np],outer=[1])
 	nodes= [col1 col2]
 ##### Since the nodes are correlated, we need to compute the cholesky inverse of the variance matrix and premultiply the nodes by it
-sigma= [[.002 .001],[ .001 .001]]
+sigma= [[.02 .01],[ .01 .01]]
 sigma= cholfact(sigma)[:U]
 nodes=nodes*sigma
 	#### The corresponding weights will be the product of the original weights
